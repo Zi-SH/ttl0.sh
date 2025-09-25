@@ -1,0 +1,16 @@
+:root{
+  --background: #111827;
+  --color: #e5e7eb;
+}
+
+/* Put accent on a nearer ancestor so it beats :root from the theme */
+body{
+  --accent: #e50914;    /* main red */
+}
+
+/* keep the header pill red as well */
+.header__logo .logo,
+.brand{                   /* one of these will match the theme’s brand element */
+  background: #e50914 !important;
+  color: black !important;
+}

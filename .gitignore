@@ -1,0 +1,15 @@
+# Hugo build artifacts
+/public/
+/resources/
+/themes/
+/.hugo_build.lock
+
+# OS/editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Node (if you add tooling later)
+/node_modules/
