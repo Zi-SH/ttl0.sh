@@ -4,6 +4,9 @@ draft: false
 ---
 Ongoing projects
 
+
+
+
 | Project     | Purpose | Status    |
 | :---        |    :----:   |          ---: |
 | drift       | Wayland-based tiling compositor in Rust | Active
