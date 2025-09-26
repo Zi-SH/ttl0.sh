@@ -1,5 +1,5 @@
 {{ define "main" }}
-<main class="content">                       <!-- single, centered container -->
+<main class="content">
   <div class="projects-grid">
     <article class="projects-main">
       <h1>Projects</h1>
@@ -11,7 +11,8 @@
       <section>
         <h2>Active</h2>
         {{ range ($active.ByWeight) }}
-          <article class="project">
+          {{ $id := .File.TranslationBaseName | default (anchorize .Title) }}
+          <article class="project" id="{{ $id }}">
             <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
             {{ with .Params.status }}<span class="badge">{{ . }}</span>{{ end }}
             {{ with .Summary }}<p>{{ . }}</p>{{ end }}
@@ -27,7 +28,8 @@
       <section>
         <h2>Archived</h2>
         {{ range ($archived.ByWeight) }}
-          <article class="project archived">
+          {{ $id := .File.TranslationBaseName | default (anchorize .Title) }}
+          <article class="project archived" id="{{ $id }}">
             <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
             {{ with .Summary }}<p>{{ . }}</p>{{ end }}
             <p class="more"><a href="{{ .RelPermalink }}">Read more &rarr;</a></p>
@@ -42,12 +44,14 @@
       <h3>All Projects</h3>
       <ul class="projects-nav">
         {{ range ($active.ByWeight) }}
-          <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+          {{ $id := .File.TranslationBaseName | default (anchorize .Title) }}
+          <li><a href="#{{ $id }}">{{ .Title }}</a></li>
         {{ end }}
         {{ if gt (len $archived) 0 }}
           <li class="divider">Archived</li>
           {{ range ($archived.ByWeight) }}
-            <li class="archived"><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+            {{ $id := .File.TranslationBaseName | default (anchorize .Title) }}
+            <li class="archived"><a href="#{{ $id }}">{{ .Title }}</a></li>
           {{ end }}
         {{ end }}
       </ul>
@@ -55,4 +59,3 @@
   </div>
 </main>
 {{ end }}
-
