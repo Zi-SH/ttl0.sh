@@ -1,6 +1,7 @@
 ---
 title: "Drift"
 status: "Active"
+archived: false
 weight: 100
 ---
 **STATUS:** `Active`
