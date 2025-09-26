@@ -5,7 +5,8 @@ weight: 101
 ---
 An XKCD-inspired passphrase generator, written in Rust and intented for command line. 
 
-https://xkpass.io
+URL: https://xkpass.io
+Source: https://github.com/Zi-SH/xkpass-io
 <!--more-->
 ---
 
