@@ -1,6 +1,6 @@
 ---
 title: "Rosetta & Genki"
-status: "Active"
+status: "Maintained"
 weight: 102
 ---
 Rosetta (and its partner Genki) serve as a visual novel playthrough bot in several Discord servers for the Science Adventure series.
