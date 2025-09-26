@@ -2,8 +2,6 @@
 <main class="content">
   <div class="projects-grid">
     <article class="projects-main">
-      <h1>Projects</h1>
-
       {{ $pages := .RegularPages }}
       {{ $active   := where $pages "Params.archived" "!=" true }}
       {{ $archived := where $pages "Params.archived" "==" true }}
