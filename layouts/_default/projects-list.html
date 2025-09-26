@@ -1,0 +1,38 @@
+{{ define "main" }}
+<main class="content projects">
+  <h1>Projects</h1>
+
+  {{/* Group by a front-matter flag: archived: true/false  */}}
+  {{ $active := where .Pages "Params.archived" "ne" true | sort "Lastmod" "desc" }}
+  {{ $archived := where .Pages "Params.archived" "eq" true | sort "Lastmod" "desc" }}
+
+  <section>
+    <h2>Active</h2>
+    {{ range $active }}
+      <article class="project">
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        {{ with .Params.status }}<span class="badge">{{ . }}</span>{{ end }}
+        {{ with .Summary }}<p>{{ . }}</p>{{ end }}
+        <p><a href="{{ .RelPermalink }}">→</a></p>
+      </article>
+      <hr>
+    {{ else }}
+      <p>No active projects yet.</p>
+    {{ end }}
+  </section>
+
+  <section>
+    <h2>Archived</h2>
+    {{ range $archived }}
+      <article class="project archived">
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        {{ with .Summary }}<p>{{ . }}</p>{{ end }}
+        <p><a href="{{ .RelPermalink }}">→</a></p>
+      </article>
+      <hr>
+    {{ else }}
+      <p>No archived projects.</p>
+    {{ end }}
+  </section>
+</main>
+{{ end }}
