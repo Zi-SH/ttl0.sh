@@ -1,6 +1,5 @@
 ---
 title: "Drift"
-status: "Active"
 archived: false
 weight: 100
 ---

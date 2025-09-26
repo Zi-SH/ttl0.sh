@@ -1,6 +1,5 @@
 ---
 title: "xkpass-io"
-status: "Maintained"
 archived: false
 weight: 101
 ---

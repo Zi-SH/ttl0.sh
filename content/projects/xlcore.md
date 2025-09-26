@@ -1,6 +1,5 @@
 ---
 title: "XLCore"
-status: "Departed Team"
 archived: true
 weight: 201
 ---

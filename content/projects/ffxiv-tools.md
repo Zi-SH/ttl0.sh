@@ -1,6 +1,5 @@
 ---
 title: "ffxiv-tools"
-status: "Abandoned"
 archived: true
 weight: 202
 ---

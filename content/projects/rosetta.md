@@ -1,6 +1,5 @@
 ---
 title: "Rosetta & Genki"
-status: "Maintained"
 archived: false
 weight: 102
 ---
