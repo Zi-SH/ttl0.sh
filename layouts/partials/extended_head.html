@@ -1,106 +1,75 @@
 <style>
-  /* Wider layout */
-  :root{
-    /* If the theme uses a width var, this will take effect */
-    --content-width: 1200px;
-  }
+  /* Site width */
+  :root { --content-width: 1200px; --background:#121212; --color:#e0e0e0; }
+  .container, .content { max-width: 1200px !important; }
 
-  /* And force the common containers wider as a fallback */
-  .container,
-  .content {
-    max-width: 1200px !important;
-  }
+  /* Accent + brand */
+  body { --accent:#e50914; }
+  .header__logo .logo, .brand { background:#e50914 !important; color:#121212 !important; }
 
-  /* Two-column grid for projects section */
-  /* Content left, sidebar right */
-  .projects-grid {
-    display: grid;
+  /* Nav colors */
+  .navigation-menu a { color:#e0e0e0; text-decoration:none; }
+  .navigation-menu a:hover, .navigation-menu a:focus { color:#ff3b30 !important; border-color:#ff3b30; }
+  .navigation-menu a.current,
+  .navigation-menu a[aria-current="page"] { color:#e50914 !important; border-bottom:2px solid #e50914; }
+
+  /* Projects two-column layout (content left, sidebar right) */
+  .projects-grid{
+    display:grid;
     grid-template-columns: 1fr 300px;
-    gap: 1.5rem;
-    align-items: start;
+    gap: 1.5rem 2rem;
+    align-items:start;                 /* keep tops aligned */
+  }
+  .projects-main{ min-width:0; }       /* prevent overflow pushing sidebar down */
+  .projects-main > h1{ margin-top:0; } /* align with sidebar title */
+
+  .projects-aside{
+    grid-column:2;
+    position:sticky; top:1rem;
+    align-self:start;
   }
 
-  /* Configure aside, force into second column */
-  .projects-aside {
-    grid-column: 2;
-    position: sticky;
-    top: 1rem;
-    align-self: start;
+  /* Sidebar list */
+  .projects-aside h3 { margin:0 0 .5rem 0; font-size:1rem; opacity:.9; }
+  .projects-nav { list-style:none; padding:0; margin:0; }
+  .projects-nav li { margin:.2rem 0; }
+  .projects-nav li.divider {
+    margin-top:.75rem; padding-top:.5rem;
+    border-top:1px solid var(--border-color, rgba(255,255,255,.1));
+    opacity:.7; font-size:.9rem;
   }
+  .projects-nav li.archived a { opacity:.85; }
+  .projects-nav a { text-decoration:none; color:var(--color); }
+  .projects-nav a:hover { color:#ff3b30; }
 
+  /* “Read more” link */
   .project p.more{ margin:.5rem 0 0 0; }
   .project p.more a{ font-size:.9rem; opacity:.85; text-decoration:none; }
   .project p.more a:hover{ opacity:1; }
 
-  .projects-aside h3 { margin: 0 0 .5rem 0; font-size: 1rem; opacity: .9; }
-  .projects-nav { list-style: none; padding: 0; margin: 0; }
-  .projects-nav li { margin: .2rem 0; }
-  .projects-nav li.divider { margin-top: .75rem; padding-top: .5rem; border-top: 1px solid var(--border-color, rgba(255,255,255,.1)); opacity: .7; font-size: .9rem; }
-  .projects-nav li.archived a { opacity: .8; }
-  .projects-nav a { text-decoration: none; color: var(--color); }
-  .projects-nav a:hover { color: #ff3b30; }
+  /* Cards spacing */
+  .project{ margin-bottom:1.25rem; }
+  .project + hr{ margin:1.25rem 0; opacity:.3; }
 
-  /* Badges and archived style you already use */
-  .project .badge{
-    display:inline-block; padding:.15rem .4rem; border-radius:.25rem;
-    background:#e50914; color:#121212; font-size:.8rem; font-weight:600;
-  }
-  .project.archived { opacity:.8; }
-  @media (max-width: 900px) {
-    .projects-grid { grid-template-columns: 1fr; }
-    .projects-aside { position: static; }
-  }
+  /* Global content spacing (no negative header hack) */
+  main.content, main { padding-top:0 !important; margin-top:0 !important; }
 
-  header.header {
-    margin-bottom: -3rem !important;   /* default is ~2rem */
-  }
-
-  /* Reduce top spacing of main content */
-  main.content, main {
-    padding-top: 0.0rem !important;     /* tighten content start */
-    margin-top: 0 !important;
-  }
-
-  :root { --background:#121212; --color:#e0e0e0; }
-  body { --accent:#e50914; }
-
-  .header__logo .logo, .brand { background:#e50914 !important; color:#121212 !important; }
-
-  /* default nav = gray */
-  .navigation-menu a { color:#e0e0e0; text-decoration:none; }
-
-  /* hover = brighter red */
-  .navigation-menu a:hover, .navigation-menu a:focus {
-    color:#ff3b30 !important; border-color:#ff3b30;
-  }
-
-  /* active/current = red + underline */
-  .navigation-menu a.current {
-    color:#e50914 !important; border-bottom:2px solid #e50914;
-  }
-  /* if theme adds aria-current later, this will also style it */
-  .navigation-menu a[aria-current="page"] {
-    color:#e50914 !important; border-bottom:2px solid #e50914;
+  /* Responsive */
+  @media (max-width: 900px){
+    .projects-grid{ grid-template-columns:1fr; }
+    .projects-aside{ grid-column:1; position:static; margin-top:1rem; }
   }
 </style>
 
 <script>
-  // Add 'current' + aria-current="page" to the matching nav link
+  // Mark current nav link
   document.addEventListener('DOMContentLoaded', function () {
     var path = location.pathname.replace(/index\.html$/, '');
-    // normalize trailing slash (treat "/projects" same as "/projects/")
     if (path !== '/' && !path.endsWith('/')) path += '/';
-
     document.querySelectorAll('.navigation-menu a[href]').forEach(function (a) {
-      var href = a.getAttribute('href');
-      // normalize href the same way
-      var h = href.replace(/index\.html$/, '');
+      var h = a.getAttribute('href').replace(/index\.html$/, '');
       if (h !== '/' && !h.endsWith('/')) h += '/';
-
-      if (h === path) {
-        a.classList.add('current');
-        a.setAttribute('aria-current','page');
-      }
+      if (h === path) { a.classList.add('current'); a.setAttribute('aria-current','page'); }
     });
   });
 </script>
