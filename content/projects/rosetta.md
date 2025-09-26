@@ -5,7 +5,7 @@ weight: 102
 ---
 Rosetta (and its partner Genki) serve as a visual novel playthrough bot in several Discord servers for the Science Adventure series.
 
-URL: https://genki.iruo.app/
+URL: https://genki.iruo.app/   
 Source: https://github.com/SciADV-Community/rosetta
 <!--more-->
 ---
