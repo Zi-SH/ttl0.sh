@@ -3,9 +3,10 @@ title: "ffxiv-tools"
 archived: true
 weight: 202
 ---
+**LANGUAGE:** BaSH
 **STATUS:** `Abandoned`
 
-A BASH-based tool for configuring Final Fantasy XIV and ACT on Linux.
+A tool for configuring Final Fantasy XIV and ACT on Linux.
 
 Source: https://github.com/Zi-SH/ffxiv-tools
 <!--more-->

@@ -3,6 +3,7 @@ title: "XLCore"
 archived: true
 weight: 201
 ---
+**LANGUAGE:** C#
 **STATUS:** `Departed Team`
 
 XIVLauncher (abbreviated as XL) is a faster launcher for FFXIV, with various available addons and enhancements to the game.
