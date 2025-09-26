@@ -1,14 +1,18 @@
 {{ define "main" }}
+<!-- tpl: projects-list v3 -->
 <main class="content projects">
   <h1>Projects</h1>
 
-  {{/* Split pages by a front-matter flag: archived: true/false */}}
-  {{ $active := where .Pages "Params.archived" "ne" true | sort "Lastmod" "desc" }}
-  {{ $archived := where .Pages "Params.archived" "eq" true | sort "Lastmod" "desc" }}
+  {{/* Only regular pages in this section */}}
+  {{ $pages := .RegularPages }}
+
+  {{/* Split: archived true vs everything else (false or unset) */}}
+  {{ $archived := where $pages "Params.archived" "==" true }}
+  {{ $active   := where $pages "Params.archived" "!=" true }}
 
   <section>
     <h2>Active</h2>
-    {{ range $active }}
+    {{ range ($active.ByWeight) }}
       <article class="project">
         <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
         {{ with .Params.status }}<span class="badge">{{ . }}</span>{{ end }}
@@ -23,7 +27,7 @@
 
   <section>
     <h2>Archived</h2>
-    {{ range $archived }}
+    {{ range ($archived.ByWeight) }}
       <article class="project archived">
         <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
         {{ with .Summary }}<p>{{ . }}</p>{{ end }}
@@ -35,3 +39,4 @@
     {{ end }}
   </section>
 </main>
+{{ end }}

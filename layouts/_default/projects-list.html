@@ -1,42 +1,61 @@
 {{ define "main" }}
-<!-- tpl: projects-list v3 -->
-<main class="content projects">
-  <h1>Projects</h1>
+<div class="projects-grid">
+  <aside class="projects-aside">
+    <h3>All Projects</h3>
+    <ul class="projects-nav">
+      {{/* List all project pages, Active first (by weight), then Archived */}}
+      {{ $pages := .RegularPages }}
+      {{ $active   := where $pages "Params.archived" "!=" true }}
+      {{ $archived := where $pages "Params.archived" "==" true }}
 
-  {{/* Only regular pages in this section */}}
-  {{ $pages := .RegularPages }}
+      {{ range ($active.ByWeight) }}
+        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{ end }}
+      {{ if gt (len $archived) 0 }}
+        <li class="divider">Archived</li>
+        {{ range ($archived.ByWeight) }}
+          <li class="archived"><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+        {{ end }}
+      {{ end }}
+    </ul>
+  </aside>
 
-  {{/* Split: archived true vs everything else (false or unset) */}}
-  {{ $archived := where $pages "Params.archived" "==" true }}
-  {{ $active   := where $pages "Params.archived" "!=" true }}
+  <main class="content projects">
+    <h1>Projects</h1>
 
-  <section>
-    <h2>Active</h2>
-    {{ range ($active.ByLastmod.Reverse) }}
-      <article class="project">
-        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-        {{ with .Params.status }}<span class="badge">{{ . }}</span>{{ end }}
-        {{ with .Summary }}<p>{{ . }}</p>{{ end }}
-        <p><a href="{{ .RelPermalink }}">→</a></p>
-      </article>
-      <hr>
-    {{ else }}
-      <p>No active projects yet.</p>
-    {{ end }}
-  </section>
+    {{ $pages := .RegularPages }}
+    {{ $active   := where $pages "Params.archived" "!=" true }}
+    {{ $archived := where $pages "Params.archived" "==" true }}
 
-  <section>
-    <h2>Archived</h2>
-    {{ range ($archived.ByLastmod.Reverse) }}
-      <article class="project archived">
-        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-        {{ with .Summary }}<p>{{ . }}</p>{{ end }}
-        <p><a href="{{ .RelPermalink }}">→</a></p>
-      </article>
-      <hr>
-    {{ else }}
-      <p>No archived projects.</p>
-    {{ end }}
-  </section>
-</main>
+    <section>
+      <h2>Active</h2>
+      {{ range ($active.ByWeight) }}
+        <article class="project">
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          {{ with .Params.status }}<span class="badge">{{ . }}</span>{{ end }}
+          {{ with .Summary }}<p>{{ . }}</p>{{ end }}
+          <p class="more"><a href="{{ .RelPermalink }}">Read more &rarr;</a></p>
+        </article>
+        <hr>
+      {{ else }}
+        <p>No active projects yet.</p>
+      {{ end }}
+    </section>
+
+    <section>
+      <h2>Archived</h2>
+      {{ range ($archived.ByWeight) }}
+        <article class="project archived">
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          {{ with .Summary }}<p>{{ . }}</p>{{ end }}
+          <p class="more"><a href="{{ .RelPermalink }}">Read more &rarr;</a></p>
+        </article>
+        <hr>
+      {{ else }}
+        <p>No archived projects.</p>
+      {{ end }}
+    </section>
+  </main>
+</div>
 {{ end }}
+
