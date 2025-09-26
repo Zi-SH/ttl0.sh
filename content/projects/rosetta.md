@@ -12,7 +12,7 @@ Source: https://github.com/SciADV-Community/rosetta
 <!--more-->
 ---
 
-Genki and Rosetta were written by another person who offered to write a nicer version of another bot I had written, named DaSH. 
+Genki and Rosetta were written by another person who offered to write a nicer version of another bot I had written, named [DaSH]( {{< relref "projects/dash" >}}). 
 
 DaSH offered users command-based functions that would allow them to open channels to post thoughts as they played through a visual novel. It operated as a sort of self-controlled Let's Play Discord channel dedicated to one person.
 
