@@ -12,7 +12,6 @@
           {{ $id := .File.TranslationBaseName | default (anchorize .Title) }}
           <article class="project" id="{{ $id }}">
             <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-            {{ with .Params.status }}<span class="badge">{{ . }}</span>{{ end }}
             {{ with .Summary }}<p>{{ . }}</p>{{ end }}
             <p class="more"><a href="{{ .RelPermalink }}">Read more &rarr;</a></p>
           </article>
