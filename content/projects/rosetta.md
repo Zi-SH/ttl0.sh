@@ -1,6 +1,7 @@
 ---
 title: "Rosetta & Genki"
 status: "Maintained"
+archived: true
 weight: 102
 ---
 **STATUS:** `Maintained`

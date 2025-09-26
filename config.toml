@@ -3,11 +3,9 @@ languageCode = "en-us"
 title = "ttl0"
 theme = "re-terminal"
 
-[Params.Logo]
-  logoTest = "Hello"
-
-[params.logo]
-  logoTest = "Hello"
+[params]
+  themeColor = "red"
+  customLogo = "ttl0.sh"
 
 [taxonomies]
   tag = "tags"
