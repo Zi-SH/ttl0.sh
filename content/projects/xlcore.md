@@ -10,7 +10,7 @@ XIVLauncher (abbreviated as XL) is a faster launcher for FFXIV, with various ava
 
 Contributed to "XLCore", the code-named project for the eventual Linux-native launcher.
 
-URL: https://goatcorp.github.io/ 
+URL: https://goatcorp.github.io/   
 Source: https://github.com/goatcorp/FFXIVQuickLauncher
 <!--more-->
 ---
