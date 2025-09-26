@@ -3,7 +3,7 @@ title: "DaSH"
 archived: true
 weight: 204
 ---
-**LANGUAGES:** Python
+**LANGUAGES:** Python   
 **STATUS:** `Abandoned`
 
 A Discord bot for the Science Adventure community that provided dedicated "Let's Play" channels to users. Superceded by [Rosetta]( {{< relref "projects/rosetta" >}}).

@@ -3,7 +3,7 @@ title: "xkpass-io"
 archived: false
 weight: 101
 ---
-**LANGUAGE:** Rust
+**LANGUAGE:** Rust   
 **STATUS:** `Maintained`
 
 An XKCD-inspired passphrase generator, written in Rust and intented for command line. 

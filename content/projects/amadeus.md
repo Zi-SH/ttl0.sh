@@ -3,7 +3,7 @@ title: "Amadeus"
 archived: true
 weight: 205
 ---
-**LANGUAGES:** Python 
+**LANGUAGES:** Python   
 **STATUS:** `Abandoned`
 
 A Discord bot for the Science Adventure community that provided command-initiated Markov Chain interactions.
