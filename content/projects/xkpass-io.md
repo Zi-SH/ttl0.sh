@@ -3,6 +3,8 @@ title: "xkpass-io"
 status: "Maintained"
 weight: 101
 ---
+**STATUS:** `Maintained`
+
 An XKCD-inspired passphrase generator, written in Rust and intented for command line. 
 
 URL: https://xkpass.io   
