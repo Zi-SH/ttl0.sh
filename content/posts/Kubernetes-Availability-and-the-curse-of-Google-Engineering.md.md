@@ -7,7 +7,7 @@ categories: ["tech"]
 summary: "\"I have 10 users so it's time to deploy Kubernetes\", but unironically."
 author: ttl0
 ---
-
+---
 Despite what anyone seems to say, the verdict is out on Kubernetes. 
 
 Programmers love it for its flexibility, especially when it comes to runners. Why shouldn't they, after all, when it allows them to stuff 10 pounds of shit in a 5 pound bag. Sysadmins tend to hate it; it's complicated, adds a lot of overhead, and no one seems to be a master of it. Members of both groups, however, generally love to agree on one conceptual argument against Kubernetes:
