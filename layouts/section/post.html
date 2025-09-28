@@ -1,0 +1,43 @@
+{{ define "main" }}
+<main class="content">
+  {{ with .Content }}{{ . }}{{ end }}
+
+  {{ $pages := .Paginator.Pages | default (.RegularPages.ByDate.Reverse) }}
+  {{ range $pages }}
+    <article class="post">
+      <h1 class="post-title">
+        <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+      </h1>
+
+      <div class="post-meta">
+        {{- if .Date -}}
+          <time class="post-date">{{ .Date.Format "2006-01-02" }}</time>
+        {{- end -}}
+        {{- with .Params.author -}}
+          <span class="post-author">{{ . }}</span>
+        {{- end -}}
+        {{- if and (.Param "readingTime") (eq (.Param "readingTime") true) -}}
+          <span class="post-reading-time">
+            {{ .ReadingTime }} {{ $.Site.Params.minuteReadingTime | default "min read" }}
+            ({{ .WordCount }} {{ $.Site.Params.words | default "words" }})
+          </span>
+        {{- end -}}
+      </div>
+
+      {{ if .Params.tags }}
+        <span class="post-tags">
+          {{ range .Params.tags }}
+          #<a href="{{ (urls.JoinPath "tags" (urlize .) "/") | absLangURL }}">{{ . }}</a>&nbsp;
+          {{ end }}
+        </span>
+      {{ end }}
+
+      {{ with .Summary }}<p>{{ . }}</p>{{ end }}
+      <p class="more"><a href="{{ .RelPermalink }}">Read more &rarr;</a></p>
+    </article>
+    <hr>
+  {{ end }}
+
+  {{ template "_internal/pagination.html" . }}
+</main>
+{{ end }}
