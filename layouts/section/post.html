@@ -1,47 +1,35 @@
-{{ define "main" }}
-<main class="content">
-  {{ with .Content }}{{ . }}{{ end }}
+<article class="post on-list">
+  <h1 class="post-title">
+    <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+  </h1>
 
-  {{ $p := .Paginate (.RegularPages.ByDate.Reverse) }}
-  {{ range $p.Pages }}
-    <article class="post">
-      <h1 class="post-title">
-        <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
-      </h1>
+  <!-- line 1: date :: author (theme adds :: via CSS) -->
+  <div class="post-meta">
+    {{- if .Date -}}
+      <time class="post-date">{{ .Date.Format "2006-01-02" }}</time>
+    {{- end -}}
+    {{- with .Params.author -}}
+      <span class="post-author">{{ . }}</span>
+    {{- end -}}
+  </div>
 
-      <div class="post-meta">
-        {{- if .Date -}}
-          <time class="post-date">{{ .Date.Format "2006-01-02" }}</time>
-        {{- end -}}
-        {{- with .Params.author -}}
-          <span class="post-author">{{ . }}</span>
-        {{- end -}}
-        {{- if and (.Param "readingTime") (eq (.Param "readingTime") true) -}}
-          <span class="post-reading-time">
-            {{ .ReadingTime }} {{ $.Site.Params.minuteReadingTime | default "min read" }}
-            ({{ .WordCount }} {{ $.Site.Params.words | default "words" }})
-          </span>
-        {{- end -}}
-      </div>
+  <!-- line 2: read time (separate block so it doesn’t get the inline ::) -->
+  {{- if and (.Param "readingTime") (eq (.Param "readingTime") true) -}}
+    <div class="post-reading-time">
+      {{ .ReadingTime }} {{ $.Site.Params.minuteReadingTime | default "min read" }}
+      ({{ .WordCount }} {{ $.Site.Params.words | default "words" }})
+    </div>
+  {{- end -}}
 
-      {{ if .Params.tags }}
-        <span class="post-tags">
-          {{ range .Params.tags }}
-          #<a href="{{ (urls.JoinPath "tags" (urlize .) "/") | absLangURL }}">{{ . }}</a>&nbsp;
-          {{ end }}
-        </span>
+  {{ if .Params.tags }}
+    <span class="post-tags">
+      {{ range .Params.tags }}
+      #<a href="{{ (urls.JoinPath "tags" (urlize .) "/") | absLangURL }}">{{ . }}</a>&nbsp;
       {{ end }}
-
-      {{ with .Summary }}<p>{{ . }}</p>{{ end }}
-      <p class="more"><a href="{{ .RelPermalink }}">Read more &rarr;</a></p>
-    </article>
-    <hr>
+    </span>
   {{ end }}
 
-  {{/* simple pager, styled by theme defaults */}}
-  <nav class="pagination">
-    {{ with $p.Prev }}<a class="newer" href="{{ .URL }}">← Newer</a>{{ end }}
-    {{ with $p.Next }}<a class="older" href="{{ .URL }}">Older →</a>{{ end }}
-  </nav>
-</main>
-{{ end }}
+  {{ with .Summary }}<div class="post-content">{{ . }}</div>{{ end }}
+  <div><a class="read-more button" href="{{ .RelPermalink }}">→</a></div>
+</article>
+<hr>
