@@ -1,6 +1,7 @@
 ---
 title: "Kubernetes, Availability, and the curse of Google Engineering"
 draft: false
+readingTime: true
 date: 2025-09-27T12:00:00+00:00
 tags: ["kubernetes", "container", "sysadmin"] 
 categories: ["tech"]
