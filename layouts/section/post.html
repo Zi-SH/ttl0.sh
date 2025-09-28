@@ -2,8 +2,8 @@
 <main class="content">
   {{ with .Content }}{{ . }}{{ end }}
 
-  {{ $pages := .Paginator.Pages | default (.RegularPages.ByDate.Reverse) }}
-  {{ range $pages }}
+  {{ $p := .Paginate (.RegularPages.ByDate.Reverse) }}
+  {{ range $p.Pages }}
     <article class="post">
       <h1 class="post-title">
         <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
@@ -38,6 +38,10 @@
     <hr>
   {{ end }}
 
-  {{ template "_internal/pagination.html" . }}
+  {{/* simple pager, styled by theme defaults */}}
+  <nav class="pagination">
+    {{ with $p.Prev }}<a class="newer" href="{{ .URL }}">← Newer</a>{{ end }}
+    {{ with $p.Next }}<a class="older" href="{{ .URL }}">Older →</a>{{ end }}
+  </nav>
 </main>
 {{ end }}
