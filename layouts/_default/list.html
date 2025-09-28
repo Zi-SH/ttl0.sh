@@ -22,15 +22,6 @@
             </span>
         </div>
 
-
-        <!-- line 2: read time on its own line -->
-        {{- if and (.Param "readingTime") (eq (.Param "readingTime") true) -}}
-          <div class="post-reading-time">
-            {{ .ReadingTime }} {{ $.Site.Params.minuteReadingTime | default "min read" }}
-            ({{ .WordCount }} {{ $.Site.Params.words | default "words" }})
-          </div>
-        {{- end -}}
-
         {{ if .Params.tags }}
           <span class="post-tags">
             {{ range .Params.tags }}
