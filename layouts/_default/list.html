@@ -1,0 +1,66 @@
+{{ define "main" }}
+  {{ if eq .Section "posts" }}
+  <!-- Custom posts list with reading time -->
+  <main class="content">
+    {{ with .Content }}<div class="index-content">{{ . }}</div>{{ end }}
+
+    {{ $p := .Paginate (.RegularPages.ByDate.Reverse) }}
+    <div class="posts">
+      {{ range $p.Pages }}
+        <article class="post on-list">
+          <h1 class="post-title">
+            <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
+          </h1>
+
+          <div class="post-meta">
+            {{- if .Date -}}
+              <time class="post-date">{{ .Date.Format "2025-01-02" | default ( .Date.Format "2006-01-02") }}</time>
+            {{- end -}}
+            {{- with .Params.author -}}
+              <span class="post-author">{{ . }}</span>
+            {{- end -}}
+            {{- if and (.Param "readingTime") (eq (.Param "readingTime") true) -}}
+              <span class="post-reading-time">
+                {{ .ReadingTime }} {{ $.Site.Params.minuteReadingTime | default "min read" }}
+                ({{ .WordCount }} {{ $.Site.Params.words | default "words" }})
+              </span>
+            {{- end -}}
+          </div>
+
+          {{ if .Params.tags }}
+            <span class="post-tags">
+              {{ range .Params.tags }}
+              #<a href="{{ (urls.JoinPath "tags" (urlize .) "/") | absLangURL }}">{{ . }}</a>&nbsp;
+              {{ end }}
+            </span>
+          {{ end }}
+
+          <div class="post-content">{{ with .Summary }}{{ . }}{{ end }}</div>
+          <div><a class="read-more button" href="{{ .RelPermalink }}">→</a></div>
+        </article>
+        <hr>
+      {{ end }}
+
+      <div class="pagination">
+        <div class="pagination__buttons">
+          {{ with $p.Prev }}<a class="button previous" href="{{ .URL }}"><span class="prev">&larr; Newer</span></a>{{ end }}
+          {{ with $p.Next }}<a class="button next" href="{{ .URL }}"><span class="next">Older &rarr;</span></a>{{ end }}
+        </div>
+      </div>
+    </div>
+  </main>
+
+  {{ else }}
+  <!-- Fallback for other sections: simple list -->
+  <main class="content">
+    {{ with .Content }}{{ . }}{{ end }}
+    {{ range .Pages }}
+      <article class="post on-list">
+        <h1 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a></h1>
+        {{ with .Summary }}<div class="post-content">{{ . }}</div>{{ end }}
+      </article>
+      <hr>
+    {{ end }}
+  </main>
+  {{ end }}
+{{ end }}
