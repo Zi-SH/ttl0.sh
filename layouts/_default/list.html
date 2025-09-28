@@ -12,13 +12,16 @@
 
         <!-- line 1: date :: author (theme adds :: before author) -->
         <div class="post-meta">
-          {{- if .Date -}}
             <time class="post-date">{{ .Date.Format "2006-01-02" }}</time>
-          {{- end -}}
-          {{- with .Params.author -}}
-            <span class="post-author">{{ . }}</span>
-          {{- end -}}
+            {{- with .Params.Author -}}
+                <span class="post-author"> :: {{ . }}</span>
+            {{- end -}}
+            <span class="post-reading-time">
+                {{ .ReadingTime }} {{ $.Site.Params.minuteReadingTime | default "min read" }}
+                ({{ .WordCount }} {{ $.Site.Params.words | default "words" }})
+            </span>
         </div>
+
 
         <!-- line 2: read time on its own line -->
         {{- if and (.Param "readingTime") (eq (.Param "readingTime") true) -}}

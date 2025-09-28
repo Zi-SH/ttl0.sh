@@ -64,6 +64,26 @@
 
   /* Control theme injection of "::" before content */
   .post-meta .post-reading-time::before { content: none !important; }
+
+  /* Blog list metadata */
+  .post.on-list .post-meta {
+    color: #e50914; /* or var(--accent) */
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .post.on-list .post-date,
+  .post.on-list .post-author,
+  .post.on-list .post-reading-time {
+    margin-right: 0.5rem;
+  }
+
+.post.on-list .post-reading-time {
+  display: block; /* forces onto a new line */
+  margin-top: 0.25rem;
+  color: #e0e0e0; /* lighter than date/author */
+}
+
   
   /* Responsive */
   @media (max-width: 900px){
