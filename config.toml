@@ -6,6 +6,7 @@ theme = "re-terminal"
 [params]
   themeColor = "red"
   customLogo = "ttl0.sh"
+  favicon = "favicon.png"
   readingTime = true
   minuteReadingTime = "min read"
   words = "words"
