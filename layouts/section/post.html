@@ -3,7 +3,7 @@
     <a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a>
   </h1>
 
-  <!-- line 1: date :: author (theme adds :: via CSS) -->
+  <!-- line 1: date :: author (theme adds :: before author) -->
   <div class="post-meta">
     {{- if .Date -}}
       <time class="post-date">{{ .Date.Format "2006-01-02" }}</time>
@@ -13,7 +13,7 @@
     {{- end -}}
   </div>
 
-  <!-- line 2: read time (separate block so it doesn’t get the inline ::) -->
+  <!-- line 2: read time on its own line -->
   {{- if and (.Param "readingTime") (eq (.Param "readingTime") true) -}}
     <div class="post-reading-time">
       {{ .ReadingTime }} {{ $.Site.Params.minuteReadingTime | default "min read" }}
