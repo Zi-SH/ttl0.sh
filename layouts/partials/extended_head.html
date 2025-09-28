@@ -62,6 +62,12 @@
   /* Global content spacing (no negative header hack) */
   main.content, main { padding-top:0 !important; margin-top:0 !important; }
 
+  /* Force post readign time to new line in blog list view */
+  .post-meta .post-reading-time {
+    display: block;
+    color: var(--accent)
+  }
+
   /* Control theme injection of "::" before content */
   .post-meta .post-reading-time::before { content: none !important; }
 
