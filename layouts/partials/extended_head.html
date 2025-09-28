@@ -1,14 +1,21 @@
 <style>
+  /* Variables for fun and profit */
+  :root { --content-width: 1200px; --background:#121212; --color:#e0e0e0; }
+  .header__logo .logo, .brand { background:#e50914 !important; color:#121212 !important; }
+  body { --accent:#e50914; }
+
+  /* Site width */
+  .container, .content { max-width: 1200px !important; }
+
   /* Butter smooth scrolling */
   html { scroll-behavior: smooth; }
 
-  /* Site width */
-  :root { --content-width: 1200px; --background:#121212; --color:#e0e0e0; }
-  .container, .content { max-width: 1200px !important; }
-
-  /* Accent + brand */
-  body { --accent:#e50914; }
-  .header__logo .logo, .brand { background:#e50914 !important; color:#121212 !important; }
+    /* page fix for mobile) */
+  @media (max-width: 900px){
+    element {
+      padding-top: 20px !important;
+    }
+  }
 
   /* Nav colors */
   .navigation-menu a { color:#e0e0e0; text-decoration:none; }
@@ -23,6 +30,7 @@
     gap: 1.5rem 2rem;
     align-items:start;                 /* keep tops aligned */
   }
+
   .projects-main{ min-width:0; }       /* prevent overflow pushing sidebar down */
   .projects-main > h1{ margin-top:0; } /* align with sidebar title */
 
