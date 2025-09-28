@@ -10,12 +10,16 @@ theme = "re-terminal"
   minuteReadingTime = "min read"
   words = "words"
 
+[params.meta]
+  favicon = false
+
 [taxonomies]
   tag = "tags"
   category = "categories"
 
 [[menu.main]]
   name = "Home"
+
   url  = "/"
   weight = 1
 
