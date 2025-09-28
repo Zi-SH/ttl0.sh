@@ -62,6 +62,9 @@
   /* Global content spacing (no negative header hack) */
   main.content, main { padding-top:0 !important; margin-top:0 !important; }
 
+  /* Control theme injection of "::" before content */
+  .post-meta time.post-date::before { content: " :: " !important; }
+
   /* Responsive */
   @media (max-width: 900px){
     .projects-grid{ grid-template-columns:1fr; }
